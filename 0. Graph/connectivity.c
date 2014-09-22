@@ -23,7 +23,7 @@ static int G[5][5] = {
     0, 1, 0, 0, 0,
 };
 
-int dfs(int start_index, int dest_index)
+int _dfs(int start_index, int dest_index)
 {
     int i;
 
@@ -36,7 +36,7 @@ int dfs(int start_index, int dest_index)
 
     for (i = 0; i < sizeof V / sizeof V[0]; i++) {
         if (G[start_index][i] && !V[i].visited) {
-            if (dfs(i, dest_index) == 1) {
+            if (_dfs(i, dest_index) == 1) {
                 printf(" <- %c", V[start_index].value);
                 return 1;
             }
@@ -44,6 +44,17 @@ int dfs(int start_index, int dest_index)
     }
 
     return 0;
+}
+
+int dfs(int start_index, int dest_index)
+{
+    int i;
+
+    for (i = 0; i < sizeof V / sizeof V[0]; i++) {
+        V[i].visited = 0;
+    }
+
+    return _dfs(start_index, dest_index);
 }
 
 int main(void)
