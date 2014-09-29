@@ -107,4 +107,50 @@ struct binary_tree_node *binary_tree_pop_node(
 #define binary_tree_node_get_value(tree, node, type) \
     (*(type *)node->data)
 
+enum binary_tree_enum {
+    BTE_NONE = 0,
+    BTE_LEFT = 2 << 0,
+    BTE_RIGHT = 2 << 1,
+    BTE_ALL = BTE_LEFT | BTE_RIGHT,
+};
+
+void _binary_tree_deep_first_enum(
+    struct binary_tree *tree,
+    struct binary_tree_node *from,
+    enum binary_tree_enum(*func)(
+        struct binary_tree *tree,
+        struct binary_tree_node *node,
+        void *param),
+    void *param)
+{
+    enum binary_tree_enum result;
+
+    if (from == NULL) {
+        return;
+    }
+
+    result = func(tree, from, param);
+    if ((result & BTE_LEFT) == BTE_LEFT) {
+        _binary_tree_deep_first_enum(tree, from->left, func, param);
+    }
+    if ((result & BTE_RIGHT) == BTE_RIGHT) {
+        _binary_tree_deep_first_enum(tree, from->right, func, param);
+    }
+}
+
+void binary_tree_deep_first_enum(
+    struct binary_tree *tree,
+    struct binary_tree_node *from,
+    enum binary_tree_enum(*func)(
+        struct binary_tree *tree,
+        struct binary_tree_node *node,
+        void *param),
+    void *param)
+{
+    if (from == NULL) {
+        from = binary_tree_get_node(tree, NULL, 0);
+    }
+    _binary_tree_deep_first_enum(tree, from, func, param);
+}
+
 #endif
