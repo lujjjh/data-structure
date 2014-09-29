@@ -14,3 +14,4 @@
 查找 (Search)
 -------------
 1. [二分查找](/search/binary_search.c)
+2. [二叉搜索树](/search/binary_search_tree.c)
