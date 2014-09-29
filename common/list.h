@@ -9,12 +9,12 @@
 
 struct list {
     void *buf;
-    int elem_size;
-    int elem_count;
-    int buf_count;
+    size_t elem_size;
+    size_t elem_count;
+    size_t buf_count;
 };
 
-void list_init(struct list *l, int elem_size)
+void list_init(struct list *l, size_t elem_size)
 {
     l->elem_size = elem_size;
     l->elem_count = 0;
@@ -32,7 +32,7 @@ size_t list_size(struct list *l)
     return l->elem_count;
 }
 
-void list_set_size(struct list *l, int size)
+void list_set_size(struct list *l, size_t size)
 {
     void *new_buf;
 
