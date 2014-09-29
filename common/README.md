@@ -18,3 +18,13 @@ struct list l;
 
 list_init(&l, sizeof(int))
 ```
+
+### 重置缓冲区长度 ###
+
+    list_set_size(struct list *l, size_t size)
+
+使得缓冲区预留能容纳 `size` 个元素（即 `size * elem_size`）的空间，列表中的原始数据将被保留。若 `size` 小于当前缓冲区长度，则舍弃从 `size` 开始的所有元素。
+
+```c
+list_set_size(&l, 100);
+```
