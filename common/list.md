@@ -1,10 +1,5 @@
-通用库
-=====
-
-可变长列表 (list.h)
-------------------
-
-### 初始化 ###
+初始化
+======
 
     list_init(struct list *l, size_t elem_size)
 
@@ -19,7 +14,8 @@ struct list l;
 list_init(&l, sizeof(int))
 ```
 
-### 释放 ###
+释放
+====
 
     list_free(struct list *l)
 
@@ -33,7 +29,8 @@ list_init(&l, sizeof(int))
 list_free(&l);
 ```
 
-### 重置缓冲区长度 ###
+重置缓冲区长度
+============
 
     list_set_size(struct list *l, size_t size)
 
@@ -48,7 +45,8 @@ list_free(&l);
 list_set_size(&l, 100);
 ```
 
-### 获取列表长度 ###
+获取列表长度
+==========
 
     list_size(struct list *l)
 
