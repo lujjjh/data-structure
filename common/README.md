@@ -28,3 +28,13 @@ list_init(&l, sizeof(int))
 ```c
 list_set_size(&l, 100);
 ```
+
+### 获取列表长度 ###
+
+    list_size(struct list *l)
+
+获取*当前已存放*的元素个数，仅对 `push()` 添加的元素有效。
+
+```c
+int size = list_size(&l);
+```
